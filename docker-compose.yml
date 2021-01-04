@@ -1,0 +1,9 @@
+version: '2'
+services:
+  ib:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "443:443"
+    container_name: ib
