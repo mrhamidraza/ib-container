@@ -1,5 +1,6 @@
 server {
-	listen $PORT;
+	listen $PORT default_server;
+
 
         access_log /var/log/nginx/reverse-access.log;
         error_log /var/log/nginx/reverse-error.log;
