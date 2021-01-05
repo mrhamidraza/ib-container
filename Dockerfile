@@ -1,7 +1,6 @@
 FROM nginx:1.19.6-alpine
 
-PORT=8080
-EXPOSE $PORT
+EXPOSE 8080
 
 # Install dependencies
 RUN apk update && apk add openjdk11
