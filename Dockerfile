@@ -5,7 +5,6 @@ RUN apk update && apk add openjdk11
 
 WORKDIR /root
 
-PORT=8080
 EXPOSE $PORT
 
 # Copy source
