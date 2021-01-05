@@ -1,0 +1,6 @@
+server {
+    listen ${PORT};
+    location / {
+        proxy_pass https://localhost:5000;
+    }
+}
