@@ -10,13 +10,11 @@ WORKDIR /root
 COPY ./src /root
 
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
 
 # Set permissions
 RUN chmod a+x clientportal.gw/bin/run.sh \
     ./run.sh
 
 CMD /root/run.sh
-
-CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
 
