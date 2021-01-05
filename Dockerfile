@@ -18,3 +18,5 @@ RUN chmod a+x clientportal.gw/bin/run.sh \
 
 CMD /root/run.sh
 
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+
