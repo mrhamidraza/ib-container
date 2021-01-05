@@ -5,6 +5,7 @@ RUN apk update && apk add openjdk11
 
 WORKDIR /root
 
+
 # Copy source
 COPY ./src /root
 
