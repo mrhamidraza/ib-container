@@ -1,6 +1,7 @@
 FROM nginx:1.19.6-alpine
 
-EXPOSE 443
+PORT=8080
+EXPOSE $PORT
 
 # Install dependencies
 RUN apk update && apk add openjdk11
