@@ -5,7 +5,7 @@ RUN apk update && apk add openjdk11
 
 WORKDIR /root
 
-
+RUN echo "sssssssssssssssssssssssssssssssSSSSSSSSSSSSSS"
 RUN echo $PORT
 
 # Copy source
