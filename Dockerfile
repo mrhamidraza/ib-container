@@ -1,18 +1,19 @@
 FROM nginx:1.19.6-alpine
 
-EXPOSE 8080
-
 # Install dependencies
 RUN apk update && apk add openjdk11
 
 WORKDIR /root
 
+
+RUN echo $PORT
+
 # Copy source
 COPY ./src /root
 
-COPY ./nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
-CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
 
 
 
