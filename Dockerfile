@@ -5,7 +5,7 @@ RUN apk update && apk add openjdk11
 
 WORKDIR /root
 
-ARG PORT
+ENV PORT=$PORT
 
 # Copy source
 COPY ./src /root
