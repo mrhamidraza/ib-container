@@ -5,6 +5,6 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "${PORT}:443"
-      - "${PORT}:8888"
+      - "$PORT:443"
+      - "$PORT:8888"
     container_name: ib
