@@ -10,15 +10,18 @@ WORKDIR /
 # Copy source
 COPY --chown=nginx:nginx ./src /
 
-# Copy nginx template
-COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
-COPY nginx/nginx.conf /etc/nginx/nginx.conf
+# Copy nginx config
+COPY ./nginx /etc/nginx/
 
 # Set permissions
 RUN chmod a+x clientportal.gw/bin/run.sh \
-    ./run.sh
+    /docker-entrypoint.d/30-clientportal.sh
+
+# Set ownership
+RUN chown -R nginx:nginx /etc/nginx/conf.d/
 
 USER nginx
 
-CMD /run.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
+CMD ["nginx", "-g", "daemon off;"]
