@@ -3,9 +3,21 @@ services:
   ib:
     build:
       context: .
-      dockerfile: Dockerfile
     environment:
       PORT: 8080
     ports:
       - "8080:8080"
     container_name: ib
+  ib_lb:
+    build:
+      context: ib_lb
+      args:
+        APP_DOMAIN: ibgateway.test
+    environment:
+      PORT: 8080
+    depends_on:
+      - ib
+    ports:
+      - "443:443"
+    volumes:
+      - ./hotspot_lb/src:/var/www/html

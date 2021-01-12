@@ -1,0 +1,16 @@
+server {
+    listen 443 ssl;
+
+    ssl_certificate     /etc/ssl/localcerts/server.crt;
+    ssl_certificate_key /etc/ssl/localcerts/server.key;
+    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers ECDHE-RSA-AES256-SHA384:AES256-SHA256:RC4:HIGH:!MD5:!aNULL:!eNULL:!NULL:!DH:!EDH:!AESGCM;
+
+    location ^~ / {
+        proxy_pass http://ib:${PORT}/;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Scheme $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
